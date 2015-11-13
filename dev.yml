@@ -1,0 +1,26 @@
+jboss-fuse-full:
+#  pid: "jboss-fuse-docker"
+  build: .
+#  domainname: fooss452.com
+#  hostname: foo
+#  ipc: host
+#  mac_address: 02:42:ac:11:65:43
+  ports:
+   - 8181:8181
+#   - "127.0.0.1:8181:8181"
+#  links:
+#    - db
+  environment:
+    - ENVIRONMENT=dev #and vice-versa for qa
+  env_file:
+    - ".env.jboss_fuse"
+  extra_hosts:
+    - "google:8.8.8.8"
+#   - "aaaa:50.31.209.229"
+
+#db:
+#  image: library/mysql:5.6.22
+#  ports:
+#    - "13306:3306"
+#  env_file:
+#    - '.env.db'
