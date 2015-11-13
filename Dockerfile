@@ -19,17 +19,19 @@ ENV FUSE_PUBLIC_STOMP_SSL_PORT 61614
 #COPY install.sh /opt/install.sh
 #RUN /opt/install.sh
 
+USER root
+
 ADD /opt/jboss-fuse-6.1.0.redhat-379 /opt/jboss-fuse-6.1.0.redhat-379
 
-EXPOSE 8181 8101 1099 44444 61616 1883 5672 61613 61617 8883 5671 61614
+EXPOSE 8080 8181 8182 8101 1099 44444 61616 1883 5672 61613 61617 8883 5671 61614
 
 #
 # The following directories can hold config/data, so lets suggest the user
 # mount them as volumes.
-VOLUME /opt/jboss-fuse-6.1.0.redhat-379/bin
-VOLUME /opt/jboss-fuse-6.1.0.redhat-379/etc
-VOLUME /opt/jboss-fuse-6.1.0.redhat-379/data
-VOLUME /opt/jboss-fuse-6.1.0.redhat-379/deploy
+#VOLUME /opt/jboss-fuse-6.1.0.redhat-379/bin
+#VOLUME /opt/jboss-fuse-6.1.0.redhat-379/etc
+#VOLUME /opt/jboss-fuse-6.1.0.redhat-379/data
+#VOLUME /opt/jboss-fuse-6.1.0.redhat-379/deploy
 
 # lets default to the jboss-fuse dir so folks can more easily navigate to around the server install
 #ADD /opt/jboss-fuse-6.1.0.redhat-379 /opt/jboss-fuse-6.1.0.redhat-379
@@ -37,4 +39,4 @@ WORKDIR /opt/jboss-fuse-6.1.0.redhat-379
 #CMD /opt/jboss-fuse-6.1.0.redhat-379/bin/fuse
 
 ENTRYPOINT ["/opt/jboss-fuse-6.1.0.redhat-379/bin/fuse"]
-CMD ["client"]
+CMD ["server"]
