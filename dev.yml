@@ -1,12 +1,15 @@
 jboss-fuse-full:
 #  pid: "jboss-fuse-docker"
   build: .
-#  domainname: fooss452.com
-#  hostname: foo
+  domainname: ihor-fuse.com
+  hostname: ihor-fuse
 #  ipc: host
 #  mac_address: 02:42:ac:11:65:43
+  dns:
+   - 192.168.110.3
+   - 192.168.110.10 
   ports:
-   - 8181:8181
+   - 8187:8181
 #   - "127.0.0.1:8181:8181"
 #  links:
 #    - db
@@ -18,9 +21,29 @@ jboss-fuse-full:
     - "google:8.8.8.8"
 #   - "aaaa:50.31.209.229"
 
+jenkins:
+  image: jenkins:latest
+  container_name: jenkins
+  domainname: ihor-jenkins.com
+  hostname: ihor-jenkins
+  dns:
+   - 192.168.110.3 
+   - 192.168.110.10
+  volumes:
+   - ./jenkins_data:/var/jenkins_home
+  ports:
+   - "8080:8080"
 #db:
 #  image: library/mysql:5.6.22
 #  ports:
 #    - "13306:3306"
 #  env_file:
 #    - '.env.db'
+#dbdata:
+#  image: postgres:9.4.4
+db:
+  image: postgres:9.4.4
+#  volumes_from:
+#    - dbdata
+  ports:
+    - "7777:5432"
