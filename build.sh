@@ -1,4 +1,4 @@
-DOCKER_IMAGE_NAME=strikersoft/jboss-fuse-full
+DOCKER_IMAGE_NAME=i452/jboss-fuse-6.1.0.redhat-379
 DOCKER_IMAGE_VERSION=latest
 
 docker rmi --force=true ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}

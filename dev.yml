@@ -1,11 +1,14 @@
-jboss-fuse-full:
+jboss-fuse-redhat:
+#  image: jboss-fuse-6.1.0.redhat-379:latest
 #  pid: "jboss-fuse-docker"
+#  command: /bin/bash
   build: .
   domainname: ihor-fuse.com
   hostname: ihor-fuse
 #  ipc: host
 #  mac_address: 02:42:ac:11:65:43
   dns:
+   - 192.168.1.2
    - 192.168.110.3
    - 192.168.110.10 
   ports:
@@ -21,29 +24,30 @@ jboss-fuse-full:
     - "google:8.8.8.8"
 #   - "aaaa:50.31.209.229"
 
-jenkins:
-  image: jenkins:latest
-  container_name: jenkins
-  domainname: ihor-jenkins.com
-  hostname: ihor-jenkins
-  dns:
-   - 192.168.110.3 
-   - 192.168.110.10
-  volumes:
-   - ./jenkins_data:/var/jenkins_home
-  ports:
-   - "8080:8080"
+#jenkins:
+#  image: jenkins:latest
+#  container_name: jenkins
+#  domainname: ihor-jenkins.com
+#  hostname: ihor-jenkins
+#  dns:
+#   - 192.168.1.2
+#   - 192.168.110.3 
+#   - 192.168.110.10
+#  volumes:
+#   - ./jenkins_data:/var/jenkins_home
+#  ports:
+#   - "8080:8080"
 #db:
 #  image: library/mysql:5.6.22
 #  ports:
 #    - "13306:3306"
 #  env_file:
-#    - '.env.db'
+##    - '.env.db'
 #dbdata:
 #  image: postgres:9.4.4
-db:
-  image: postgres:9.4.4
+#db:
+#  image: postgres:9.4.4
 #  volumes_from:
 #    - dbdata
-  ports:
-    - "7777:5432"
+#  ports:
+#    - "7777:5432"

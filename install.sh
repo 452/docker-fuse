@@ -6,6 +6,7 @@
 
 # Adjust the following env vars if needed.
 FUSE_ARTIFACT_ID=jboss-fuse-full
+FUSE_VERSION=6.1.0.redhat-379
 FUSE_DISTRO_URL=http://origin-repository.jboss.org/nexus/content/groups/ea/org/jboss/fuse/${FUSE_ARTIFACT_ID}/${FUSE_VERSION}/${FUSE_ARTIFACT_ID}-${FUSE_VERSION}.zip
 
 # Lets fail fast if any command in this script does succeed.
@@ -17,9 +18,10 @@ set -e
 cd /opt
 
 # Download and extract the distro
-curl -O ${FUSE_DISTRO_URL}
+#curl -O ${FUSE_DISTRO_URL}
+wget -c https://access.cdn.redhat.com/content/origin/files/sha256/d4/d4222f5ed50d5d465bd105f5f2dbaee3ad0adda672bba7a18b0e262ef57458a5/jboss-fuse-full-6.1.0.redhat-379.zip?_auth_=1447707166_3088d181501f584e132de3228af16092
 jar -xvf ${FUSE_ARTIFACT_ID}-${FUSE_VERSION}.zip
-rm ${FUSE_ARTIFACT_ID}-${FUSE_VERSION}.zip
+#rm ${FUSE_ARTIFACT_ID}-${FUSE_VERSION}.zip
 mv jboss-fuse-full-${FUSE_VERSION} jboss-fuse-${FUSE_VERSION}
 chmod a+x jboss-fuse/bin/*
 rm jboss-fuse/bin/*.bat jboss-fuse/bin/start jboss-fuse/bin/stop jboss-fuse/bin/status jboss-fuse/bin/patch
