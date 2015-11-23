@@ -2,6 +2,7 @@ jboss-fuse-redhat:
 #  image: jboss-fuse-6.1.0.redhat-379:latest
 #  pid: "jboss-fuse-docker"
 #  command: /bin/bash
+  container_name: jboss-fuse-redhat
   build: .
   domainname: ihor-fuse.com
   hostname: ihor-fuse
@@ -10,14 +11,16 @@ jboss-fuse-redhat:
   dns:
    - 192.168.1.2
    - 192.168.110.3
-   - 192.168.110.10 
+   - 192.168.110.10
+   - 8.8.8.8 
   ports:
-   - 8187:8181
+   - 8789:8181
 #   - "127.0.0.1:8181:8181"
 #  links:
 #    - db
   environment:
     - ENVIRONMENT=dev #and vice-versa for qa
+    - FUSE_HOME=/opt/jjjj
   env_file:
     - ".env.jboss_fuse"
   extra_hosts:
