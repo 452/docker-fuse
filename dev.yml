@@ -21,6 +21,7 @@ jboss-fuse-redhat:
   environment:
     - ENVIRONMENT=dev #and vice-versa for qa
     - FUSE_HOME=/opt/jjjj
+    - DEBUG=false
   env_file:
     - ".env.jboss_fuse"
   extra_hosts:
