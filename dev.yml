@@ -1,5 +1,5 @@
 jboss-fuse-redhat:
-#  image: jboss-fuse-6.1.0.redhat-379:latest
+#  image: i452/jboss-fuse
 #  pid: "jboss-fuse-docker"
 #  command: /bin/bash
   container_name: jboss-fuse-redhat
