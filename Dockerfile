@@ -14,6 +14,12 @@ MAINTAINER Ihor Lavryniuk <sp.titan@gmail.com>
 
 #USER root
 #RUN apt-get update && apt-get install -y tree
+RUN set -ex; \
+	yum install -y nmap; \
+	yum install -y net-tools; \
+	yum install openssh-clients; \
+	yum clean all;
+RUN sed -i "\$ashell:source https://raw.githubusercontent.com/452/shscripts/master/.bashrcFuse.sh" /opt/jboss-fuse-6.1.0.redhat-379/etc/shell.init.script
 RUN sed -i "\$asource <(curl -s  https://raw.githubusercontent.com/452/shscripts/master/.bashrc)" /root/.bashrc
 RUN sed -i "\$afuse=fuse,admin" /opt/jboss-fuse-6.1.0.redhat-379/etc/users.properties
 #EXPOSE 8080 8181 8182 8101 1099 44444 61616 1883 5672 61613 61617 8883 5671 61614
