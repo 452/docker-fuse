@@ -1,5 +1,5 @@
 jboss-fuse-redhat:
-  image: i452/jboss-fuse-6.1.0.redhat-379:virgin-root
+  image: i452/jboss-fuse-6.1.0.redhat-379:latest
 #  pid: "jboss-fuse-docker"
 #  command: /bin/bash
   container_name: jboss-fuse-redhat
@@ -14,7 +14,8 @@ jboss-fuse-redhat:
    - 192.168.110.10
    - 8.8.8.8 
   ports:
-   - 8789:8181
+   - 9789:8181
+   - 9720:8101
 #   - "127.0.0.1:8181:8181"
 #  links:
 #    - db

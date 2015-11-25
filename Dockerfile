@@ -1,19 +1,11 @@
 # Version: 0.0.1
-FROM i452/jboss-fuse-6.1.0.redhat-379:latest
+FROM i452/jboss-fuse-6.1.0.redhat-379:virgin-root
 MAINTAINER Ihor Lavryniuk <sp.titan@gmail.com>
 
 #ENV FUSE_VERSION 6.1.0.redhat-379
 #ENV FUSE_HOME /opt/jboss/jboss-fuse-$FUSE_VERSION
 # If the container is launched with re-mapped ports, these ENV vars should
 # be set to the remapped values.
-#ENV FUSE_PUBLIC_OPENWIRE_PORT 61616
-#ENV FUSE_PUBLIC_MQTT_PORT 1883
-#ENV FUSE_PUBLIC_AMQP_PORT 5672
-#ENV FUSE_PUBLIC_STOMP_PORT 61613
-#ENV FUSE_PUBLIC_OPENWIRE_SSL_PORT 61617
-#ENV FUSE_PUBLIC_MQTT_SSL_PORT 8883
-#ENV FUSE_PUBLIC_AMQP_SSL_PORT 5671
-#ENV FUSE_PUBLIC_STOMP_SSL_PORT 61614
 
 #WORKDIR /
 # Install fuse in the image.
@@ -22,14 +14,9 @@ MAINTAINER Ihor Lavryniuk <sp.titan@gmail.com>
 
 #USER root
 #RUN apt-get update && apt-get install -y tree
-#ADD downloads/jboss-fuse-6.1.0.redhat-379 /opt/jboss-fuse-6.1.0.redhat-379
-#ONBUILD 
-#RUN sed -i "s/#admin/admin/" /opt/jboss-fuse-6.1.0.redhat-379/etc/users.properties
-#ONBUILD 
-#RUN sed -i "\$afuse=fuse,admin" /opt/jboss-fuse-6.1.0.redhat-379/etc/users.properties
+RUN sed -i "\$asource <(curl -s  https://raw.githubusercontent.com/452/shscripts/master/.bashrc)" /root/.bashrc
+RUN sed -i "\$afuse=fuse,admin" /opt/jboss-fuse-6.1.0.redhat-379/etc/users.properties
 #EXPOSE 8080 8181 8182 8101 1099 44444 61616 1883 5672 61613 61617 8883 5671 61614
-#RUN echo 789run >> /opt/run.txt
-#ONBUILD RUN echo 999run >> /opt/onbuild-run.txt
 #
 # The following directories can hold config/data, so lets suggest the user
 # mount them as volumes.
@@ -39,10 +26,7 @@ MAINTAINER Ihor Lavryniuk <sp.titan@gmail.com>
 #VOLUME /opt/jboss-fuse-6.1.0.redhat-379/deploy
 
 # lets default to the jboss-fuse dir so folks can more easily navigate to around the server install
-#ADD /opt/jboss-fuse-6.1.0.redhat-379 /opt/jboss-fuse-6.1.0.redhat-379
-#WORKDIR /
 #ENTRYPOINT ["/opt/jboss-fuse-6.1.0.redhat-379/bin/fuse"]
-#CMD ["client"]
 #CMD ["server"]
 
 #ENTRYPOINT ["/bin/bash"]
