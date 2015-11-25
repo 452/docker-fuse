@@ -1,9 +1,9 @@
 jboss-fuse-redhat:
-#  image: i452/jboss-fuse
+  image: i452/jboss-fuse-6.1.0.redhat-379:virgin-root
 #  pid: "jboss-fuse-docker"
 #  command: /bin/bash
   container_name: jboss-fuse-redhat
-  build: .
+#  build: .
   domainname: ihor-fuse.com
   hostname: ihor-fuse
 #  ipc: host
