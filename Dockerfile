@@ -16,6 +16,9 @@ MAINTAINER Ihor Lavryniuk <sp.titan@gmail.com>
 #RUN apt-get update && apt-get install -y tree
 #RUN set -ex; \
 #	yum install -y nmap net-tools openssh-clients; yum clean all;
+#RUN iptables -I INPUT -p tcp -m tcp --dport 8101 -j ACCEPT; \
+#	service iptables save;
+#	service iptables restart
 RUN sed -i "\$ashell:source https://raw.githubusercontent.com/452/shscripts/master/.bashrcFuse.sh" /opt/jboss-fuse-6.1.0.redhat-379/etc/shell.init.script
 RUN sed -i "\$asource <(curl -s https://raw.githubusercontent.com/452/shscripts/master/.bashrc)" /root/.bashrc
 RUN sed -i "\$afuse=fuse,admin" /opt/jboss-fuse-6.1.0.redhat-379/etc/users.properties
